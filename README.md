@@ -17,9 +17,9 @@
 - Open Source Contributions
 
 <p align="center">
-  <img height="350em" src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=dark&hide_border=true" />
-  <img height="350em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshita568&theme=dark&hide_border=true&layout=compact" />
-  <img height="350em"src="https://streak-stats.demolab.com?user=akshita568&theme=dark&hide_border=true" />
+  <img height="300em" src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=dark&hide_border=true" />
+  <img height="300em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshita568&theme=dark&hide_border=true&layout=compact" />
+  <img height="300em"src="https://streak-stats.demolab.com?user=akshita568&theme=dark&hide_border=true" />
 </p>
 
 <p align="center">
