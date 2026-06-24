@@ -30,4 +30,6 @@
 
 ## Coding Stats
 
+![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent)
+
 <img src="./assets/codolio-stats.svg" width="100%">
