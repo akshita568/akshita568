@@ -1,59 +1,63 @@
 
-<svg width="1000" height="460"
-     xmlns="http://www.w3.org/2000/svg">
+<svg width="1000" height="520" xmlns="http://www.w3.org/2000/svg">
 
+<!-- BACKGROUND -->
 <rect width="100%" height="100%" rx="18" fill="#0d1117"/>
 
 <!-- TITLE -->
-<text x="25" y="35" fill="white" font-size="24" font-weight="bold">
-Contest Analytics
+<text x="25" y="40" fill="white" font-size="24" font-weight="bold">
+Contest Analytics Dashboard
 </text>
 
 <!-- TOP STATS -->
-<rect x="20" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="35" y="80" fill="#8b949e">Current Rating</text>
-<text x="35" y="103" fill="white" font-size="18">1376</text>
+<rect x="20" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="35" y="85" fill="#8b949e">Current Rating</text>
+<text x="35" y="108" fill="white" font-size="18">1376</text>
 
-<rect x="260" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="275" y="80" fill="#8b949e">Peak Rating</text>
-<text x="275" y="103" fill="white" font-size="18">1483</text>
+<rect x="260" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="275" y="85" fill="#8b949e">Peak Rating</text>
+<text x="275" y="108" fill="white" font-size="18">1483</text>
 
-<rect x="500" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="515" y="80" fill="#8b949e">Problems Solved</text>
-<text x="515" y="103" fill="white" font-size="18">327</text>
+<rect x="500" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="515" y="85" fill="#8b949e">Total Solved</text>
+<text x="515" y="108" fill="white" font-size="18">327</text>
 
-<rect x="740" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="755" y="80" fill="#8b949e">Max Streak</text>
-<text x="755" y="103" fill="white" font-size="18">26</text>
+<rect x="740" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="755" y="85" fill="#8b949e">Max Streak</text>
+<text x="755" y="108" fill="white" font-size="18">26</text>
 
-<!-- GRAPH -->
-<rect x="20" y="140" width="940" height="220" rx="12" fill="#161b22"/>
+<!-- GRAPH PANEL -->
+<rect x="20" y="120" width="960" height="240" rx="12" fill="#161b22"/>
 
-<polygon fill="rgba(168,85,247,0.2)" points="60.0,360 60.0,180.0 167.5,222.5174825174825 275.0,279.5804195804196 382.5,294.12587412587413 490.0,340.0 597.5,324.3356643356643 705.0,312.02797202797206 812.5,334.4055944055944 920.0,299.72027972027973 920.0,360"/>
+<!-- GRAPH AREA -->
+<polygon fill="rgba(168,85,247,0.2)" points="60.0,360 60.0,130.0 170.0,185.8041958041958 280.0,260.6993006993007 390.0,279.7902097902098 500.0,340.0 610.0,319.44055944055947 720.0,303.2867132867133 830.0,332.65734265734267 940.0,287.13286713286715 940.0,360"/>
 
-<polyline fill="none" stroke="#a855f7" stroke-width="3"
-points="60.0,180.0 167.5,222.5174825174825 275.0,279.5804195804196 382.5,294.12587412587413 490.0,340.0 597.5,324.3356643356643 705.0,312.02797202797206 812.5,334.4055944055944 920.0,299.72027972027973"/>
+<!-- LINE -->
+<polyline fill="none" stroke="#a855f7" stroke-width="3" points="60.0,130.0 170.0,185.8041958041958 280.0,260.6993006993007 390.0,279.7902097902098 500.0,340.0 610.0,319.44055944055947 720.0,303.2867132867133 830.0,332.65734265734267 940.0,287.13286713286715"/>
 
-<circle cx="60.0" cy="180.0" r="4" fill="#a855f7"/><circle cx="167.5" cy="222.5174825174825" r="4" fill="#a855f7"/><circle cx="275.0" cy="279.5804195804196" r="4" fill="#a855f7"/><circle cx="382.5" cy="294.12587412587413" r="4" fill="#a855f7"/><circle cx="490.0" cy="340.0" r="4" fill="#a855f7"/><circle cx="597.5" cy="324.3356643356643" r="4" fill="#a855f7"/><circle cx="705.0" cy="312.02797202797206" r="4" fill="#a855f7"/><circle cx="812.5" cy="334.4055944055944" r="4" fill="#a855f7"/><circle cx="920.0" cy="299.72027972027973" r="4" fill="#a855f7"/>
+<!-- POINTS -->
+<circle cx="60.0" cy="130.0" r="4" fill="#a855f7"/><circle cx="170.0" cy="185.8041958041958" r="4" fill="#a855f7"/><circle cx="280.0" cy="260.6993006993007" r="4" fill="#a855f7"/><circle cx="390.0" cy="279.7902097902098" r="4" fill="#a855f7"/><circle cx="500.0" cy="340.0" r="4" fill="#a855f7"/><circle cx="610.0" cy="319.44055944055947" r="4" fill="#a855f7"/><circle cx="720.0" cy="303.2867132867133" r="4" fill="#a855f7"/><circle cx="830.0" cy="332.65734265734267" r="4" fill="#a855f7"/><circle cx="940.0" cy="287.13286713286715" r="4" fill="#a855f7"/>
 
 <!-- FOOTER -->
-<text x="40" y="405" fill="white" font-size="13">
-🔥 Active Days (Total): 148
+<rect x="20" y="450" width="960" height="60" rx="10" fill="#161b22"/>
+
+<text x="40" y="485" fill="white" font-size="13">
+🔥 Active Days: 148
 </text>
 
-<text x="260" y="405" fill="#ffa116" font-size="13">
-🟠 LeetCode: 260
+<text x="220" y="485" fill="#ffa116" font-size="13">
+🟠 LC: 260
 </text>
 
-<text x="460" y="405" fill="#22c55e" font-size="13">
+<text x="360" y="485" fill="#22c55e" font-size="13">
 🟢 GFG: 64
 </text>
 
-<text x="620" y="405" fill="#60a5fa" font-size="13">
+<text x="520" y="485" fill="#60a5fa" font-size="13">
 🔵 CF: 3
 </text>
 
-<text x="780" y="405" fill="#a855f7" font-size="13">
+<text x="700" y="485" fill="#a855f7" font-size="13">
 🏆 Contests: 9
 </text>
 
