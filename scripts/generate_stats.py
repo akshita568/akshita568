@@ -147,7 +147,7 @@ Contest Analytics Dashboard
 <rect x="20" y="450" width="960" height="60" rx="10" fill="#161b22"/>
 
 <text x="40" y="485" fill="white" font-size="13">
-total Active Days: {total_active_days}
+Total Active Days: {total_active_days}
 </text>
 
 <text x="220" y="485" fill="#ffa116" font-size="13">
