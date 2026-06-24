@@ -14,7 +14,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - run: pip install requests
+
       - run: python scripts/generate_stats.py
+        env:
+          CODOLIO_TOKEN: ${{ secrets.CODOLIO_TOKEN }}
 
       - name: Commit files
         run: |

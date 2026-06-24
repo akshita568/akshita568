@@ -1,23 +1,21 @@
 import os
+import requests
+import json
 
-svg = """
-<svg width="800" height="250" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="#0d1117"/>
+token = os.environ["CODOLIO_TOKEN"]
 
-  <text x="40" y="60"
-        fill="#a371f7"
-        font-size="30"
-        font-family="Arial">
-    Codolio Stats
-  </text>
+headers = {
+    "Authorization": f"Bearer {token}"
+}
 
-  <text x="40" y="120"
-        fill="white"
-        font-size="20">
-    GitHub Action is working 🚀
-  </text>
-</svg>
-"""
+response = requests.get(
+    "https://api.codolio.com/user",
+    headers=headers,
+    timeout=30
+)
 
-with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
-    f.write(svg)
+with open("assets/codolio-response.json", "w", encoding="utf-8") as f:
+    json.dump(response.json(), f, indent=2)
+
+print("Status:", response.status_code)
+print("Response saved.")
