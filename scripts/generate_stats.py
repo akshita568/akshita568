@@ -13,10 +13,6 @@ response = requests.get(
     timeout=30
 )
 
-print("Status code:", response.status_code)
-print("Response preview:")
-print(response.text[:500])
-
 response.raise_for_status()
 
 data = response.json()["data"]["platformProfiles"]["platformProfiles"]
@@ -34,55 +30,116 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 
-print("\n===== EXTRACTED STATS =====")
-print("LeetCode solved:", lc_solved)
-print("Contest rating:", lc_rating)
-print("Peak rating:", lc_peak)
-print("Active days:", lc_active)
-print("Max streak:", lc_streak)
-print("GFG solved:", gfg_solved)
-print("Codeforces solved:", cf_solved)
-print("===========================\n")
+print(f"LeetCode Solved: {lc_solved}")
+print(f"Contest Rating: {lc_rating}")
+print(f"Peak Rating: {lc_peak}")
+print(f"Active Days: {lc_active}")
+print(f"Max Streak: {lc_streak}")
+print(f"GFG Solved: {gfg_solved}")
+print(f"Codeforces Solved: {cf_solved}")
+
+# Progress percentages
+lc_solved_pct = min((lc_solved / 500) * 100, 100)
+rating_pct = min((lc_rating / 2500) * 100, 100)
+streak_pct = min((lc_streak / 100) * 100, 100)
 
 svg = f"""
-<svg width="850" height="320" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="450" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+.title {{
+    fill: white;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: bold;
+}}
+
+.label {{
+    fill: #c9d1d9;
+    font-size: 16px;
+    font-family: Arial;
+}}
+
+.value {{
+    fill: white;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: bold;
+}}
+
+.small {{
+    fill: #8b949e;
+    font-size: 14px;
+    font-family: Arial;
+}}
+</style>
 
 <rect width="100%" height="100%" rx="20" fill="#0d1117"/>
 
-<text x="30" y="45"
-fill="#a371f7"
-font-size="28"
-font-family="Arial">
-Codolio Analytics
+<text x="30" y="45" class="title">
+📊 Coding Profile Analytics
 </text>
 
-<text x="30" y="95" fill="white" font-size="20">
-LeetCode Solved: {lc_solved}
+<!-- LeetCode Solved -->
+<text x="30" y="90" class="label">
+LeetCode Solved ({lc_solved})
 </text>
 
-<text x="30" y="135" fill="white" font-size="20">
-Contest Rating: {lc_rating}
+<rect x="30" y="100" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="100" width="{3.2 * lc_solved_pct}" height="18" rx="9" fill="#FFA116"/>
+
+<!-- Contest Rating -->
+<text x="30" y="150" class="label">
+Contest Rating ({lc_rating})
 </text>
 
-<text x="30" y="175" fill="white" font-size="20">
-Peak Rating: {lc_peak}
+<rect x="30" y="160" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="160" width="{3.2 * rating_pct}" height="18" rx="9" fill="#58A6FF"/>
+
+<!-- Streak -->
+<text x="30" y="210" class="label">
+Max Streak ({lc_streak} days)
 </text>
 
-<text x="30" y="215" fill="white" font-size="20">
-Max Streak: {lc_streak} days
+<rect x="30" y="220" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="220" width="{3.2 * streak_pct}" height="18" rx="9" fill="#F85149"/>
+
+<!-- Extra Stats -->
+<text x="30" y="290" class="label">
+Peak Rating
 </text>
 
-<text x="30" y="255" fill="white" font-size="20">
-Active Days: {lc_active}
+<text x="250" y="290" class="value">
+{lc_peak}
 </text>
 
-<text x="450" y="135" fill="white" font-size="20">
-GFG Solved: {gfg_solved}
+<text x="30" y="330" class="label">
+Active Days
 </text>
 
-<text x="450" y="175" fill="white" font-size="20">
-Codeforces Solved: {cf_solved}
+<text x="250" y="330" class="value">
+{lc_active}
 </text>
+
+<!-- Right Side -->
+<text x="500" y="90" class="label">
+Problems Solved Comparison
+</text>
+
+<!-- LC -->
+<rect x="520" y="{350 - lc_solved}" width="60" height="{lc_solved}" fill="#FFA116"/>
+<text x="530" y="380" class="small">LC</text>
+<text x="520" y="{340 - lc_solved}" class="small">{lc_solved}</text>
+
+<!-- GFG -->
+<rect x="620" y="{350 - gfg_solved * 3}" width="60" height="{gfg_solved * 3}" fill="#2F8D46"/>
+<text x="630" y="380" class="small">GFG</text>
+<text x="620" y="{340 - gfg_solved * 3}" class="small">{gfg_solved}</text>
+
+<!-- CF -->
+<rect x="720" y="{350 - cf_solved * 20}" width="60" height="{cf_solved * 20}" fill="#58A6FF"/>
+<text x="735" y="380" class="small">CF</text>
+<text x="720" y="{340 - cf_solved * 20}" class="small">{cf_solved}</text>
 
 </svg>
 """
@@ -90,4 +147,4 @@ Codeforces Solved: {cf_solved}
 with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
     f.write(svg)
 
-print("SVG file written successfully: assets/codolio-stats.svg")
+print("SVG generated successfully.")
