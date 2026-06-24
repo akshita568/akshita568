@@ -1,0 +1,23 @@
+import os
+
+svg = """
+<svg width="800" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#0d1117"/>
+
+  <text x="40" y="60"
+        fill="#a371f7"
+        font-size="30"
+        font-family="Arial">
+    Codolio Stats
+  </text>
+
+  <text x="40" y="120"
+        fill="white"
+        font-size="20">
+    GitHub Action is working 🚀
+  </text>
+</svg>
+"""
+
+with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
+    f.write(svg)
