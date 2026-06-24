@@ -16,23 +16,10 @@
 - Software Development
 - Open Source Contributions
 
-## GitHub Stats
 <p align="center">
-  <a href="https://github.com/akshita568">
-    <img height="180em"
-      src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=dark&show_icons=true&hide_border=true&count_private=true" />
-  </a>
-
-  <a href="https://github.com/akshita568">
-    <img height="180em"
-      src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshita568&theme=dark&show_icons=true&hide_border=true&layout=compact" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/akshita568">
-    <img src="https://streak-stats.demolab.com?user=akshita568&theme=dark&hide_border=true" />
-  </a>
+  <img height="100%" src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=dark&hide_border=true" />
+  <img height="100%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshita568&theme=dark&hide_border=true&layout=compact" />
+  <img height="100%"src="https://streak-stats.demolab.com?user=akshita568&theme=dark&hide_border=true" />
 </p>
 
 <p align="center">
