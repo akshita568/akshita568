@@ -10,13 +10,11 @@
 - I'm a Computer Science undergraduate passionate about solving real-world problems through technology. My interests lie in Artificial Intelligence, Machine Learning, Network Security, and Software Development. I enjoy building data-driven applications, exploring new technologies, and continuously improving my problem-solving skills through Data Structures and Algorithms.
 - Beyond coding, I run a small art business where I create and sell paintings, combining creativity with entrepreneurship. I'm always eager to learn, collaborate, and contribute to impactful projects.
 
-
 ## My Focus Areas
 - Artificial Intelligence & Machine Learning
 - Data Structures & Algorithms
 - Software Development
 - Open Source Contributions
-
 
 ## GitHub Stats & Trophies
 <p align="center">
@@ -31,10 +29,6 @@
 <p align="center">
   <img height="280em" src="https://github-readme-activity-graph.vercel.app/graph?username=akshita568&theme=tokyonight&radius=10" alt="akshita568's Activity Graph" />
 </p>
-<div align="center">
-  <img src="profile-3d-city.svg" alt="3D City" width="100%" />
-</div>
-
 
 ## 🔗 Connect with Me
 <p align="center">
@@ -42,7 +36,5 @@
 </p>
 
 <p align="center"><a href="https://www.buymeacoffee.com/chamidudili" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a></p>
-
-
 
 [![LeetCode Stats](https://www.readmecodegen.com/api/leetcode-stats?username=akshita_Sharma568&theme=github_dark)](https://www.readmecodegen.com/leetcode-stats-generator/leetcode-stats-card-generator-for-github)
