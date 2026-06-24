@@ -113,8 +113,8 @@ for x, y, rating in points:
 # --------------------
 
 svg = f"""
-<svg width="1200"
-     height="650"
+<svg width="1000"
+     height="420"
      xmlns="http://www.w3.org/2000/svg">
 
 <defs>
@@ -124,123 +124,116 @@ svg = f"""
                 y1="0"
                 x2="0"
                 y2="1">
-
-<stop offset="0%"
-      stop-color="#a855f7"
-      stop-opacity="0.45"/>
-
-<stop offset="100%"
-      stop-color="#a855f7"
-      stop-opacity="0"/>
-
+    <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
 </linearGradient>
-
-<clipPath id="graphClip">
-
-<rect
-x="{GRAPH_LEFT}"
-y="{GRAPH_TOP}"
-width="{GRAPH_WIDTH}"
-height="{GRAPH_HEIGHT}"
-rx="12"/>
-
-</clipPath>
 
 </defs>
 
 <style>
 
 .title {{
-fill:white;
-font-size:28px;
-font-weight:bold;
-font-family:Arial;
-}}
-
-.card {{
-fill:#161b22;
-stroke:#30363d;
-stroke-width:1;
+    fill:white;
+    font-size:24px;
+    font-weight:bold;
+    font-family:Arial;
 }}
 
 .label {{
-fill:#8b949e;
-font-size:14px;
-font-family:Arial;
+    fill:#8b949e;
+    font-size:14px;
+    font-family:Arial;
 }}
 
 .value {{
-fill:white;
-font-size:26px;
-font-weight:bold;
-font-family:Arial;
+    fill:white;
+    font-size:18px;
+    font-weight:bold;
+    font-family:Arial;
 }}
 
 </style>
 
 <rect width="100%"
       height="100%"
-      fill="#0d1117"
-      rx="20"/>
+      rx="18"
+      fill="#0d1117"/>
 
-<text x="30"
-      y="45"
+<!-- TITLE -->
+
+<text x="25"
+      y="35"
       class="title">
-LeetCode Analytics
+🚀 Coding Analytics Dashboard
 </text>
 
-<!-- LEFT PANEL -->
+<!-- TOP STATS -->
 
-<rect x="25" y="80" width="340" height="90" rx="14" class="card"/>
-<text x="45" y="110" class="label">Current Rating</text>
-<text x="45" y="145" class="value">{lc_rating}</text>
+<rect x="20" y="55" width="220" height="60" rx="10" fill="#161b22"/>
 
-<rect x="25" y="190" width="340" height="90" rx="14" class="card"/>
-<text x="45" y="220" class="label">Peak Rating</text>
-<text x="45" y="255" class="value">{lc_peak}</text>
+<text x="35" y="80" class="label">
+Current Rating
+</text>
 
-<rect x="25" y="300" width="340" height="90" rx="14" class="card"/>
-<text x="45" y="330" class="label">Problems Solved</text>
-<text x="45" y="365" class="value">{lc_solved}</text>
+<text x="35" y="103" class="value">
+{lc_rating}
+</text>
 
-<rect x="25" y="410" width="340" height="90" rx="14" class="card"/>
-<text x="45" y="440" class="label">Max Streak</text>
-<text x="45" y="475" class="value">{lc_streak} days</text>
+<rect x="260" y="55" width="220" height="60" rx="10" fill="#161b22"/>
+
+<text x="275" y="80" class="label">
+Peak Rating
+</text>
+
+<text x="275" y="103" class="value">
+{lc_peak}
+</text>
+
+<rect x="500" y="55" width="220" height="60" rx="10" fill="#161b22"/>
+
+<text x="515" y="80" class="label">
+Problems Solved
+</text>
+
+<text x="515" y="103" class="value">
+{lc_solved}
+</text>
+
+<rect x="740" y="55" width="220" height="60" rx="10" fill="#161b22"/>
+
+<text x="755" y="80" class="label">
+Max Streak
+</text>
+
+<text x="755" y="103" class="value">
+{lc_streak} days
+</text>
 
 <!-- GRAPH PANEL -->
 
-<rect
-x="390"
-y="80"
-width="780"
-height="450"
-rx="16"
-class="card"/>
+<rect x="20"
+      y="140"
+      width="940"
+      height="220"
+      rx="12"
+      fill="#161b22"/>
 
-<text
-x="420"
-y="110"
-fill="white"
-font-size="20"
-font-family="Arial">
-Contest Rating History
+<text x="35"
+      y="170"
+      fill="white"
+      font-size="18"
+      font-family="Arial">
+Contest Rating Trend
 </text>
 
-<line
-x1="{GRAPH_LEFT}"
-y1="{GRAPH_TOP + GRAPH_HEIGHT}"
-x2="{GRAPH_LEFT + GRAPH_WIDTH}"
-y2="{GRAPH_TOP + GRAPH_HEIGHT}"
-stroke="#30363d"/>
+<!-- GRID -->
 
-<line
-x1="{GRAPH_LEFT}"
-y1="{GRAPH_TOP}"
-x2="{GRAPH_LEFT}"
-y2="{GRAPH_TOP + GRAPH_HEIGHT}"
-stroke="#30363d"/>
+<line x1="50" y1="210" x2="930" y2="210" stroke="#21262d"/>
+<line x1="50" y1="260" x2="930" y2="260" stroke="#21262d"/>
+<line x1="50" y1="310" x2="930" y2="310" stroke="#21262d"/>
 
-<g clip-path="url(#graphClip)">
+<line x1="50" y1="190" x2="50" y2="340" stroke="#30363d"/>
+<line x1="50" y1="340" x2="930" y2="340" stroke="#30363d"/>
 
 <polygon
 fill="url(#areaGradient)"
@@ -252,48 +245,49 @@ stroke="#a855f7"
 stroke-width="4"
 points="{polyline_points}"/>
 
-{dots}
-
-</g>
+{"".join(
+    f'<circle cx="{x}" cy="{y}" r="4" fill="#a855f7"/>'
+    for x, y, _ in points
+)}
 
 <!-- FOOTER -->
 
+<rect x="20"
+      y="375"
+      width="940"
+      height="30"
+      rx="8"
+      fill="#161b22"/>
+
 <text x="40"
-      y="600"
+      y="395"
       fill="white"
-      font-size="15">
-Active Days: {lc_active}
+      font-size="13">
+🔥 Active Days: {lc_active}
 </text>
 
-<text x="300"
-      y="600"
+<text x="260"
+      y="395"
       fill="#22c55e"
-      font-size="15">
-GFG Solved: {gfg_solved}
+      font-size="13">
+🟢 GFG Solved: {gfg_solved}
 </text>
 
-<text x="550"
-      y="600"
+<text x="500"
+      y="395"
       fill="#60a5fa"
-      font-size="15">
-Codeforces Solved: {cf_solved}
+      font-size="13">
+🔵 Codeforces Solved: {cf_solved}
 </text>
 
-<text x="850"
-      y="600"
+<text x="760"
+      y="395"
       fill="#a855f7"
-      font-size="15">
-Contests: {len(ratings)}
+      font-size="13">
+🏆 Contests: {len(ratings)}
 </text>
 
 </svg>
 """
-
-with open(
-    "assets/codolio-stats.svg",
-    "w",
-    encoding="utf-8"
-) as f:
-    f.write(svg)
 
 print("SVG generated successfully.")
