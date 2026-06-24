@@ -63,8 +63,14 @@ for i, rating in enumerate(ratings):
     if len(ratings) == 1:
         x = GRAPH_LEFT + GRAPH_WIDTH / 2
     else:
-        x = GRAPH_LEFT + (
-            i * GRAPH_WIDTH / (len(ratings) - 1)
+        LEFT_MARGIN = 30
+        RIGHT_MARGIN = 30
+        
+        x = (
+            GRAPH_LEFT
+            + LEFT_MARGIN
+            + i * (GRAPH_WIDTH - LEFT_MARGIN - RIGHT_MARGIN)
+              / (len(ratings) - 1)
         )
 
     usable_height = GRAPH_HEIGHT - PADDING * 2
