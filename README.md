@@ -40,9 +40,13 @@
 </p>
 
 ## Coding Stats
+
 <p align="center">
-  [LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=nightowl&show=graph,recent&card_widh=700)
+  <img height="180em"
+       src="https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent" />
 </p>
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=1">
+  <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=2"
+       width="100%" />
 </p>
