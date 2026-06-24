@@ -32,4 +32,4 @@
 
 ![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=nightowl&show=graph,recent&card_widh=700)
 
-<img src="./assets/codolio-stats.svg" width="100%">
+<img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=1">
