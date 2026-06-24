@@ -30,6 +30,6 @@
 
 ## Coding Stats
 
-![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=Highcontrast&show=graph,recent)
+![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=highcontrast&show=graph,recent&card_widh=600)
 
 <img src="./assets/codolio-stats.svg" width="100%">
