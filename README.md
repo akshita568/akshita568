@@ -42,7 +42,7 @@
 ## Coding Stats
 
 <p align="center">
-  <img height="180em"
+  <img height="100%"
        src="https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent" />
 </p>
 
