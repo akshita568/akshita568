@@ -31,3 +31,6 @@
 </p>
 
 [![LeetCode Stats](https://www.readmecodegen.com/api/leetcode-stats?username=akshita_Sharma568&theme=github_dark)](https://www.readmecodegen.com/leetcode-stats-generator/leetcode-stats-card-generator-for-github)
+
+[![Codolio Card](https://codolio.com/profile/akshita_/card)]
+(https://codolio.com/profile/akshita_)
