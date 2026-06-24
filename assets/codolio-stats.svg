@@ -1,99 +1,256 @@
 
-<svg width="900" height="450" xmlns="http://www.w3.org/2000/svg">
+<svg width="900"
+     height="520"
+     xmlns="http://www.w3.org/2000/svg">
 
 <style>
 .title {
-    fill: white;
-    font-size: 30px;
-    font-family: Arial;
-    font-weight: bold;
+    fill:white;
+    font-size:28px;
+    font-family:Arial;
+    font-weight:bold;
+}
+
+.card {
+    fill:#161b22;
+    stroke:#30363d;
+    stroke-width:1;
 }
 
 .label {
-    fill: #c9d1d9;
-    font-size: 16px;
-    font-family: Arial;
+    fill:#8b949e;
+    font-size:14px;
+    font-family:Arial;
 }
 
 .value {
-    fill: white;
-    font-size: 18px;
-    font-family: Arial;
-    font-weight: bold;
-}
-
-.small {
-    fill: #8b949e;
-    font-size: 14px;
-    font-family: Arial;
+    fill:white;
+    font-size:24px;
+    font-family:Arial;
+    font-weight:bold;
 }
 </style>
 
-<rect width="100%" height="100%" rx="20" fill="#0d1117"/>
+<rect width="100%"
+      height="100%"
+      fill="#0d1117"
+      rx="20"/>
 
-<text x="30" y="45" class="title">
-📊 Coding Profile Analytics
+<text x="30"
+      y="40"
+      class="title">
+LeetCode Rating Analytics
 </text>
 
-<!-- LeetCode Solved -->
-<text x="30" y="90" class="label">
-LeetCode Solved (260)
+<!-- Rating Card -->
+<rect x="30"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="50"
+      y="90"
+      class="label">
+Current Rating
 </text>
 
-<rect x="30" y="100" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="100" width="166.4" height="18" rx="9" fill="#FFA116"/>
-
-<!-- Contest Rating -->
-<text x="30" y="150" class="label">
-Contest Rating (1376)
+<text x="50"
+      y="125"
+      class="value">
+1376
 </text>
 
-<rect x="30" y="160" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="160" width="176.12800000000001" height="18" rx="9" fill="#58A6FF"/>
+<!-- Peak Card -->
+<rect x="230"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
 
-<!-- Streak -->
-<text x="30" y="210" class="label">
-Max Streak (26 days)
-</text>
-
-<rect x="30" y="220" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="220" width="83.2" height="18" rx="9" fill="#F85149"/>
-
-<!-- Extra Stats -->
-<text x="30" y="290" class="label">
+<text x="250"
+      y="90"
+      class="label">
 Peak Rating
 </text>
 
-<text x="250" y="290" class="value">
+<text x="250"
+      y="125"
+      class="value">
 1483
 </text>
 
-<text x="30" y="330" class="label">
-Active Days
+<!-- Solved Card -->
+<rect x="430"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="450"
+      y="90"
+      class="label">
+Problems Solved
 </text>
 
-<text x="250" y="330" class="value">
-130
+<text x="450"
+      y="125"
+      class="value">
+260
 </text>
 
-<!-- Right Side -->
-<text x="500" y="90" class="label">
-Problems Solved Comparison
+<!-- Streak Card -->
+<rect x="630"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="650"
+      y="90"
+      class="label">
+Max Streak
 </text>
 
-<!-- LC -->
-<rect x="520" y="90" width="60" height="260" fill="#FFA116"/>
-<text x="530" y="380" class="small">LC</text>
-<text x="520" y="80" class="small">260</text>
+<text x="650"
+      y="125"
+      class="value">
+26
+</text>
 
-<!-- GFG -->
-<rect x="620" y="158" width="60" height="192" fill="#2F8D46"/>
-<text x="630" y="380" class="small">GFG</text>
-<text x="620" y="148" class="small">64</text>
+<!-- Graph Background -->
+<rect x="40"
+      y="180"
+      width="820"
+      height="280"
+      rx="12"
+      class="card"/>
 
-<!-- CF -->
-<rect x="720" y="290" width="60" height="60" fill="#58A6FF"/>
-<text x="735" y="380" class="small">CF</text>
-<text x="720" y="280" class="small">3</text>
+<text x="60"
+      y="210"
+      fill="white"
+      font-size="18">
+Contest Rating History
+</text>
+
+<!-- Axes -->
+<line x1="80"
+      y1="410"
+      x2="820"
+      y2="410"
+      stroke="#444"/>
+
+<line x1="80"
+      y1="230"
+      x2="80"
+      y2="410"
+      stroke="#444"/>
+
+<!-- Line Graph -->
+<polyline
+    fill="none"
+    stroke="#FFA116"
+    stroke-width="4"
+    points="80.0,80.0 170.0,138.46153846153845 260.0,216.92307692307693 350.0,236.9230769230769 440.0,300.0 530.0,278.46153846153845 620.0,261.53846153846155 710.0,292.3076923076923 800.0,244.6153846153846"
+/>
+
+
+    <circle cx="80.0" cy="80.0" r="5" fill="#FFA116"/>
+    <text x="68.0" y="68.0"
+          fill="white"
+          font-size="11">
+        1483
+    </text>
+    
+    <circle cx="170.0" cy="138.46153846153845" r="5" fill="#FFA116"/>
+    <text x="158.0" y="126.46153846153845"
+          fill="white"
+          font-size="11">
+        1445
+    </text>
+    
+    <circle cx="260.0" cy="216.92307692307693" r="5" fill="#FFA116"/>
+    <text x="248.0" y="204.92307692307693"
+          fill="white"
+          font-size="11">
+        1394
+    </text>
+    
+    <circle cx="350.0" cy="236.9230769230769" r="5" fill="#FFA116"/>
+    <text x="338.0" y="224.9230769230769"
+          fill="white"
+          font-size="11">
+        1381
+    </text>
+    
+    <circle cx="440.0" cy="300.0" r="5" fill="#FFA116"/>
+    <text x="428.0" y="288.0"
+          fill="white"
+          font-size="11">
+        1340
+    </text>
+    
+    <circle cx="530.0" cy="278.46153846153845" r="5" fill="#FFA116"/>
+    <text x="518.0" y="266.46153846153845"
+          fill="white"
+          font-size="11">
+        1354
+    </text>
+    
+    <circle cx="620.0" cy="261.53846153846155" r="5" fill="#FFA116"/>
+    <text x="608.0" y="249.53846153846155"
+          fill="white"
+          font-size="11">
+        1365
+    </text>
+    
+    <circle cx="710.0" cy="292.3076923076923" r="5" fill="#FFA116"/>
+    <text x="698.0" y="280.3076923076923"
+          fill="white"
+          font-size="11">
+        1345
+    </text>
+    
+    <circle cx="800.0" cy="244.6153846153846" r="5" fill="#FFA116"/>
+    <text x="788.0" y="232.6153846153846"
+          fill="white"
+          font-size="11">
+        1376
+    </text>
+    
+
+<!-- Footer Stats -->
+
+<text x="60"
+      y="490"
+      fill="white"
+      font-size="15">
+Active Days: 130
+</text>
+
+<text x="260"
+      y="490"
+      fill="white"
+      font-size="15">
+GFG Solved: 64
+</text>
+
+<text x="460"
+      y="490"
+      fill="white"
+      font-size="15">
+Codeforces Solved: 3
+</text>
+
+<text x="670"
+      y="490"
+      fill="white"
+      font-size="15">
+Contests: 9
+</text>
 
 </svg>
