@@ -3,27 +3,39 @@ name: Update Codolio Stats
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - run: pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-      - run: python scripts/generate_stats.py
+      - name: Generate stats
         env:
           CODOLIO_TOKEN: ${{ secrets.CODOLIO_TOKEN }}
+        run: python scripts/generate_stats.py
 
-      - name: Commit files
+      - name: Commit and push changes
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git add .
-          git commit -m "Update stats" || echo "No changes"
-          git push
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git add assets/codolio-stats.svg
+
+          git commit -m "Update Codolio stats" || echo "No changes"
+
+          git push origin HEAD:${{ github.ref_name }}
