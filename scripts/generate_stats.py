@@ -1,5 +1,4 @@
 import os
-import json
 import requests
 
 token = os.environ["CODOLIO_TOKEN"]
@@ -18,11 +17,22 @@ response.raise_for_status()
 
 data = response.json()["data"]["platformProfiles"]["platformProfiles"]
 
-leetcode = next(p for p in data if p["platform"] == "leetcode")
-print(json.dumps(leetcode, indent=2))
-gfg = next(p for p in data if p["platform"] == "geeksforgeeks")
-cf = next(p for p in data if p["platform"] == "codeforces")
+leetcode = next(
+    p for p in data
+    if p["platform"] == "leetcode"
+)
 
+gfg = next(
+    p for p in data
+    if p["platform"] == "geeksforgeeks"
+)
+
+cf = next(
+    p for p in data
+    if p["platform"] == "codeforces"
+)
+
+# Stats
 lc_solved = leetcode["totalQuestionStats"]["totalQuestionCounts"]
 lc_rating = leetcode["userStats"]["currentRating"]
 lc_peak = leetcode["userStats"]["maxRating"]
@@ -32,121 +42,262 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 
-print(f"LeetCode Solved: {lc_solved}")
-print(f"Contest Rating: {lc_rating}")
-print(f"Peak Rating: {lc_peak}")
-print(f"Active Days: {lc_active}")
-print(f"Max Streak: {lc_streak}")
-print(f"GFG Solved: {gfg_solved}")
-print(f"Codeforces Solved: {cf_solved}")
+# Contest history (DYNAMIC)
+contest_history = leetcode["contestActivityStats"]["contestActivityList"]
 
-# Progress percentages
-lc_solved_pct = min((lc_solved / 500) * 100, 100)
-rating_pct = min((lc_rating / 2500) * 100, 100)
-streak_pct = min((lc_streak / 100) * 100, 100)
+ratings = [
+    contest["rating"]
+    for contest in contest_history
+]
+
+# Graph dimensions
+graph_x = 80
+graph_y = 80
+graph_width = 720
+graph_height = 220
+
+min_rating = min(ratings)
+max_rating = max(ratings)
+
+if min_rating == max_rating:
+    max_rating += 1
+
+points = []
+
+for i, rating in enumerate(ratings):
+
+    if len(ratings) == 1:
+        x = graph_x + graph_width / 2
+    else:
+        x = graph_x + (
+            i * graph_width / (len(ratings) - 1)
+        )
+
+    y = graph_y + graph_height - (
+        (rating - min_rating)
+        / (max_rating - min_rating)
+        * graph_height
+    )
+
+    points.append((x, y, rating))
+
+polyline_points = " ".join(
+    f"{x},{y}"
+    for x, y, _ in points
+)
+
+dots = ""
+
+for x, y, rating in points:
+    dots += f"""
+    <circle cx="{x}" cy="{y}" r="5" fill="#FFA116"/>
+    <text x="{x-12}" y="{y-12}"
+          fill="white"
+          font-size="11">
+        {rating}
+    </text>
+    """
 
 svg = f"""
-<svg width="900" height="450" xmlns="http://www.w3.org/2000/svg">
+<svg width="900"
+     height="520"
+     xmlns="http://www.w3.org/2000/svg">
 
 <style>
 .title {{
-    fill: white;
-    font-size: 30px;
-    font-family: Arial;
-    font-weight: bold;
+    fill:white;
+    font-size:28px;
+    font-family:Arial;
+    font-weight:bold;
+}}
+
+.card {{
+    fill:#161b22;
+    stroke:#30363d;
+    stroke-width:1;
 }}
 
 .label {{
-    fill: #c9d1d9;
-    font-size: 16px;
-    font-family: Arial;
+    fill:#8b949e;
+    font-size:14px;
+    font-family:Arial;
 }}
 
 .value {{
-    fill: white;
-    font-size: 18px;
-    font-family: Arial;
-    font-weight: bold;
-}}
-
-.small {{
-    fill: #8b949e;
-    font-size: 14px;
-    font-family: Arial;
+    fill:white;
+    font-size:24px;
+    font-family:Arial;
+    font-weight:bold;
 }}
 </style>
 
-<rect width="100%" height="100%" rx="20" fill="#0d1117"/>
+<rect width="100%"
+      height="100%"
+      fill="#0d1117"
+      rx="20"/>
 
-<text x="30" y="45" class="title">
-📊 Coding Profile Analytics
+<text x="30"
+      y="40"
+      class="title">
+LeetCode Rating Analytics
 </text>
 
-<!-- LeetCode Solved -->
-<text x="30" y="90" class="label">
-LeetCode Solved ({lc_solved})
+<!-- Rating Card -->
+<rect x="30"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="50"
+      y="90"
+      class="label">
+Current Rating
 </text>
 
-<rect x="30" y="100" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="100" width="{3.2 * lc_solved_pct}" height="18" rx="9" fill="#FFA116"/>
-
-<!-- Contest Rating -->
-<text x="30" y="150" class="label">
-Contest Rating ({lc_rating})
+<text x="50"
+      y="125"
+      class="value">
+{lc_rating}
 </text>
 
-<rect x="30" y="160" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="160" width="{3.2 * rating_pct}" height="18" rx="9" fill="#58A6FF"/>
+<!-- Peak Card -->
+<rect x="230"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
 
-<!-- Streak -->
-<text x="30" y="210" class="label">
-Max Streak ({lc_streak} days)
-</text>
-
-<rect x="30" y="220" width="320" height="18" rx="9" fill="#30363d"/>
-<rect x="30" y="220" width="{3.2 * streak_pct}" height="18" rx="9" fill="#F85149"/>
-
-<!-- Extra Stats -->
-<text x="30" y="290" class="label">
+<text x="250"
+      y="90"
+      class="label">
 Peak Rating
 </text>
 
-<text x="250" y="290" class="value">
+<text x="250"
+      y="125"
+      class="value">
 {lc_peak}
 </text>
 
-<text x="30" y="330" class="label">
-Active Days
+<!-- Solved Card -->
+<rect x="430"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="450"
+      y="90"
+      class="label">
+Problems Solved
 </text>
 
-<text x="250" y="330" class="value">
-{lc_active}
+<text x="450"
+      y="125"
+      class="value">
+{lc_solved}
 </text>
 
-<!-- Right Side -->
-<text x="500" y="90" class="label">
-Problems Solved Comparison
+<!-- Streak Card -->
+<rect x="630"
+      y="60"
+      width="180"
+      height="90"
+      rx="12"
+      class="card"/>
+
+<text x="650"
+      y="90"
+      class="label">
+Max Streak
 </text>
 
-<!-- LC -->
-<rect x="520" y="{350 - lc_solved}" width="60" height="{lc_solved}" fill="#FFA116"/>
-<text x="530" y="380" class="small">LC</text>
-<text x="520" y="{340 - lc_solved}" class="small">{lc_solved}</text>
+<text x="650"
+      y="125"
+      class="value">
+{lc_streak}
+</text>
 
-<!-- GFG -->
-<rect x="620" y="{350 - gfg_solved * 3}" width="60" height="{gfg_solved * 3}" fill="#2F8D46"/>
-<text x="630" y="380" class="small">GFG</text>
-<text x="620" y="{340 - gfg_solved * 3}" class="small">{gfg_solved}</text>
+<!-- Graph Background -->
+<rect x="40"
+      y="180"
+      width="820"
+      height="280"
+      rx="12"
+      class="card"/>
 
-<!-- CF -->
-<rect x="720" y="{350 - cf_solved * 20}" width="60" height="{cf_solved * 20}" fill="#58A6FF"/>
-<text x="735" y="380" class="small">CF</text>
-<text x="720" y="{340 - cf_solved * 20}" class="small">{cf_solved}</text>
+<text x="60"
+      y="210"
+      fill="white"
+      font-size="18">
+Contest Rating History
+</text>
+
+<!-- Axes -->
+<line x1="80"
+      y1="410"
+      x2="820"
+      y2="410"
+      stroke="#444"/>
+
+<line x1="80"
+      y1="230"
+      x2="80"
+      y2="410"
+      stroke="#444"/>
+
+<!-- Line Graph -->
+<polyline
+    fill="none"
+    stroke="#FFA116"
+    stroke-width="4"
+    points="{polyline_points}"
+/>
+
+{dots}
+
+<!-- Footer Stats -->
+
+<text x="60"
+      y="490"
+      fill="white"
+      font-size="15">
+Active Days: {lc_active}
+</text>
+
+<text x="260"
+      y="490"
+      fill="white"
+      font-size="15">
+GFG Solved: {gfg_solved}
+</text>
+
+<text x="460"
+      y="490"
+      fill="white"
+      font-size="15">
+Codeforces Solved: {cf_solved}
+</text>
+
+<text x="670"
+      y="490"
+      fill="white"
+      font-size="15">
+Contests: {len(ratings)}
+</text>
 
 </svg>
 """
 
-with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
+with open(
+    "assets/codolio-stats.svg",
+    "w",
+    encoding="utf-8"
+) as f:
     f.write(svg)
 
 print("SVG generated successfully.")
