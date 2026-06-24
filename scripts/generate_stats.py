@@ -3,7 +3,6 @@ import requests
 from datetime import datetime
 
 token = os.environ["CODOLIO_TOKEN"]
-
 headers = {"Authorization": f"Bearer {token}"}
 
 response = requests.get(
@@ -33,54 +32,41 @@ cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 
 total_solved = lc_solved + gfg_solved + cf_solved
 
-ratings = [
-    c["rating"]
-    for c in leetcode["contestActivityStats"]["contestActivityList"]
-]
+ratings = leetcode["contestActivityStats"]["contestActivityList"]
+ratings = [c["rating"] for c in ratings] if ratings else [0]
 
 # -------------------------
-# ACTIVE DAYS (FIXED LOGIC)
+# ACTIVE DAYS (UNION LOGIC)
 # -------------------------
 
-def extract_days(submission_calendar):
-    """Convert timestamps -> day buckets"""
-    days = set()
-    if not submission_calendar:
-        return days
+def extract_days(calendar):
+    if not calendar:
+        return set()
+    return {
+        datetime.utcfromtimestamp(int(ts)).date()
+        for ts in calendar.keys()
+    }
 
-    for ts in submission_calendar.keys():
-        day = datetime.utcfromtimestamp(int(ts)).date()
-        days.add(day)
-
-    return days
-
-
-lc_days = extract_days(
-    leetcode["dailyActivityStatsResponse"]["submissionCalendar"]
-)
-
-gfg_days = extract_days(
-    gfg["dailyActivityStatsResponse"]["submissionCalendar"]
-)
-
-cf_days = extract_days(
-    cf["dailyActivityStatsResponse"]["submissionCalendar"]
-)
+lc_days = extract_days(leetcode["dailyActivityStatsResponse"]["submissionCalendar"])
+gfg_days = extract_days(gfg["dailyActivityStatsResponse"]["submissionCalendar"])
+cf_days = extract_days(cf["dailyActivityStatsResponse"]["submissionCalendar"])
 
 total_active_days = len(lc_days | gfg_days | cf_days)
 
 # -------------------------
-# GRAPH CONFIG
+# GRAPH CONFIG (FIXED LAYOUT SYSTEM)
 # -------------------------
 
-GRAPH_LEFT = 60
-GRAPH_TOP = 160
-GRAPH_WIDTH = 860
-GRAPH_HEIGHT = 200
-PADDING = 20
+WIDTH = 1000
+HEIGHT = 520
 
-if not ratings:
-    ratings = [0]
+HEADER_H = 120
+GRAPH_TOP = HEADER_H
+GRAPH_HEIGHT = 240
+GRAPH_LEFT = 60
+GRAPH_WIDTH = 880
+
+PADDING = 20
 
 min_rating = min(ratings)
 max_rating = max(ratings)
@@ -92,17 +78,14 @@ points = []
 
 for i, rating in enumerate(ratings):
 
-    if len(ratings) == 1:
-        x = GRAPH_LEFT + GRAPH_WIDTH / 2
-    else:
-        x = GRAPH_LEFT + i * (GRAPH_WIDTH / (len(ratings) - 1))
+    x = GRAPH_LEFT + (i * GRAPH_WIDTH / max(1, len(ratings) - 1))
 
-    usable_height = GRAPH_HEIGHT - PADDING * 2
+    usable_height = GRAPH_HEIGHT - 30
 
     y = (
         GRAPH_TOP
         + GRAPH_HEIGHT
-        - PADDING
+        - 20
         - ((rating - min_rating) / (max_rating - min_rating)) * usable_height
     )
 
@@ -121,66 +104,76 @@ area_points = (
 # -------------------------
 
 svg = f"""
-<svg width="1000" height="460"
-     xmlns="http://www.w3.org/2000/svg">
+<svg width="{WIDTH}" height="{HEIGHT}" xmlns="http://www.w3.org/2000/svg">
 
+<!-- BACKGROUND -->
 <rect width="100%" height="100%" rx="18" fill="#0d1117"/>
 
 <!-- TITLE -->
-<text x="25" y="35" fill="white" font-size="24" font-weight="bold">
-Contest Analytics
+<text x="25" y="40" fill="white" font-size="24" font-weight="bold">
+Contest Analytics Dashboard
 </text>
 
 <!-- TOP STATS -->
-<rect x="20" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="35" y="80" fill="#8b949e">Current Rating</text>
-<text x="35" y="103" fill="white" font-size="18">{lc_rating}</text>
+<rect x="20" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="35" y="85" fill="#8b949e">Current Rating</text>
+<text x="35" y="108" fill="white" font-size="18">{lc_rating}</text>
 
-<rect x="260" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="275" y="80" fill="#8b949e">Peak Rating</text>
-<text x="275" y="103" fill="white" font-size="18">{lc_peak}</text>
+<rect x="260" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="275" y="85" fill="#8b949e">Peak Rating</text>
+<text x="275" y="108" fill="white" font-size="18">{lc_peak}</text>
 
-<rect x="500" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="515" y="80" fill="#8b949e">Problems Solved</text>
-<text x="515" y="103" fill="white" font-size="18">{total_solved}</text>
+<rect x="500" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="515" y="85" fill="#8b949e">Total Solved</text>
+<text x="515" y="108" fill="white" font-size="18">{total_solved}</text>
 
-<rect x="740" y="55" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="755" y="80" fill="#8b949e">Max Streak</text>
-<text x="755" y="103" fill="white" font-size="18">{leetcode["dailyActivityStatsResponse"]["maxStreak"]}</text>
+<rect x="740" y="60" width="220" height="60" rx="10" fill="#161b22"/>
+<text x="755" y="85" fill="#8b949e">Max Streak</text>
+<text x="755" y="108" fill="white" font-size="18">{leetcode["dailyActivityStatsResponse"]["maxStreak"]}</text>
 
-<!-- GRAPH -->
-<rect x="20" y="140" width="940" height="220" rx="12" fill="#161b22"/>
+<!-- GRAPH PANEL -->
+<rect x="20" y="{GRAPH_TOP}" width="960" height="{GRAPH_HEIGHT}" rx="12" fill="#161b22"/>
 
+<!-- GRAPH AREA -->
 <polygon fill="rgba(168,85,247,0.2)" points="{area_points}"/>
 
-<polyline fill="none" stroke="#a855f7" stroke-width="3"
-points="{polyline_points}"/>
+<!-- LINE -->
+<polyline fill="none" stroke="#a855f7" stroke-width="3" points="{polyline_points}"/>
 
+<!-- POINTS -->
 {"".join(f'<circle cx="{x}" cy="{y}" r="4" fill="#a855f7"/>' for x, y in points)}
 
 <!-- FOOTER -->
-<text x="40" y="405" fill="white" font-size="13">
-🔥 Active Days (Total): {total_active_days}
+<rect x="20" y="450" width="960" height="60" rx="10" fill="#161b22"/>
+
+<text x="40" y="485" fill="white" font-size="13">
+🔥 Active Days: {total_active_days}
 </text>
 
-<text x="260" y="405" fill="#ffa116" font-size="13">
-🟠 LeetCode: {lc_solved}
+<text x="220" y="485" fill="#ffa116" font-size="13">
+🟠 LC: {lc_solved}
 </text>
 
-<text x="460" y="405" fill="#22c55e" font-size="13">
+<text x="360" y="485" fill="#22c55e" font-size="13">
 🟢 GFG: {gfg_solved}
 </text>
 
-<text x="620" y="405" fill="#60a5fa" font-size="13">
+<text x="520" y="485" fill="#60a5fa" font-size="13">
 🔵 CF: {cf_solved}
 </text>
 
-<text x="780" y="405" fill="#a855f7" font-size="13">
+<text x="700" y="485" fill="#a855f7" font-size="13">
 🏆 Contests: {len(ratings)}
 </text>
 
 </svg>
 """
+
+# -------------------------
+# SAVE FILE
+# -------------------------
+
+os.makedirs("assets", exist_ok=True)
 
 with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
     f.write(svg)
