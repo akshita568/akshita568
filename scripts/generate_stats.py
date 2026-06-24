@@ -35,13 +35,11 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 total_solved = lc_solved + gfg_solved + cf_solved
-print("LC:", lc_solved)
-print("GFG:", gfg_solved)
-print("CF:", cf_solved)
-print("TOTAL:", total_solved)
 
 contest_history = leetcode["contestActivityStats"]["contestActivityList"]
 ratings = [c["rating"] for c in contest_history]
+print(gfg)
+print(cf)
 
 # --------------------
 # GRAPH CONFIG
@@ -308,5 +306,11 @@ points="{polyline_points}"/>
 
 </svg>
 """
+with open(
+    "assets/codolio-stats.svg",
+    "w",
+    encoding="utf-8"
+) as f:
+    f.write(svg)
 
 print("SVG generated successfully.")
