@@ -170,7 +170,7 @@ svg = f"""
 <text x="25"
       y="35"
       class="title">
-🚀 Coding Analytics Dashboard
+     contest Analytics 
 </text>
 
 <!-- TOP STATS -->
