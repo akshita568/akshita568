@@ -124,7 +124,7 @@ Contest Analytics Dashboard
 <text x="275" y="108" fill="white" font-size="18">{lc_peak}</text>
 
 <rect x="500" y="60" width="220" height="60" rx="10" fill="#161b22"/>
-<text x="515" y="85" fill="#8b949e">Total Solved</text>
+<text x="515" y="85" fill="#8b949e">Total Questions Solved</text>
 <text x="515" y="108" fill="white" font-size="18">{total_solved}</text>
 
 <rect x="740" y="60" width="220" height="60" rx="10" fill="#161b22"/>
@@ -147,7 +147,7 @@ Contest Analytics Dashboard
 <rect x="20" y="450" width="960" height="60" rx="10" fill="#161b22"/>
 
 <text x="40" y="485" fill="white" font-size="13">
-🔥 Active Days: {total_active_days}
+total Active Days: {total_active_days}
 </text>
 
 <text x="220" y="485" fill="#ffa116" font-size="13">
