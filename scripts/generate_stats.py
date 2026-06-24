@@ -13,6 +13,12 @@ response = requests.get(
     timeout=30
 )
 
+print("Status code:", response.status_code)
+print("Response preview:")
+print(response.text[:500])
+
+response.raise_for_status()
+
 data = response.json()["data"]["platformProfiles"]["platformProfiles"]
 
 leetcode = next(p for p in data if p["platform"] == "leetcode")
@@ -28,6 +34,16 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 
+print("\n===== EXTRACTED STATS =====")
+print("LeetCode solved:", lc_solved)
+print("Contest rating:", lc_rating)
+print("Peak rating:", lc_peak)
+print("Active days:", lc_active)
+print("Max streak:", lc_streak)
+print("GFG solved:", gfg_solved)
+print("Codeforces solved:", cf_solved)
+print("===========================\n")
+
 svg = f"""
 <svg width="850" height="320" xmlns="http://www.w3.org/2000/svg">
 
@@ -37,35 +53,35 @@ svg = f"""
 fill="#a371f7"
 font-size="28"
 font-family="Arial">
-📊 Codolio Analytics
+Codolio Analytics
 </text>
 
 <text x="30" y="95" fill="white" font-size="20">
-🟠 LeetCode Solved: {lc_solved}
+LeetCode Solved: {lc_solved}
 </text>
 
 <text x="30" y="135" fill="white" font-size="20">
-📈 Contest Rating: {lc_rating}
+Contest Rating: {lc_rating}
 </text>
 
 <text x="30" y="175" fill="white" font-size="20">
-🏆 Peak Rating: {lc_peak}
+Peak Rating: {lc_peak}
 </text>
 
 <text x="30" y="215" fill="white" font-size="20">
-🔥 Max Streak: {lc_streak} days
+Max Streak: {lc_streak} days
 </text>
 
 <text x="30" y="255" fill="white" font-size="20">
-📅 Active Days: {lc_active}
+Active Days: {lc_active}
 </text>
 
 <text x="450" y="135" fill="white" font-size="20">
-🟢 GFG Solved: {gfg_solved}
+GFG Solved: {gfg_solved}
 </text>
 
 <text x="450" y="175" fill="white" font-size="20">
-🔵 Codeforces Solved: {cf_solved}
+Codeforces Solved: {cf_solved}
 </text>
 
 </svg>
@@ -73,3 +89,5 @@ font-family="Arial">
 
 with open("assets/codolio-stats.svg", "w", encoding="utf-8") as f:
     f.write(svg)
+
+print("SVG file written successfully: assets/codolio-stats.svg")
