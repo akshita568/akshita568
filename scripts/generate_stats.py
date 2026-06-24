@@ -1,3 +1,4 @@
+
 import os
 import requests
 
@@ -17,22 +18,14 @@ response.raise_for_status()
 
 data = response.json()["data"]["platformProfiles"]["platformProfiles"]
 
-leetcode = next(
-    p for p in data
-    if p["platform"] == "leetcode"
-)
+leetcode = next(p for p in data if p["platform"] == "leetcode")
+gfg = next(p for p in data if p["platform"] == "geeksforgeeks")
+cf = next(p for p in data if p["platform"] == "codeforces")
 
-gfg = next(
-    p for p in data
-    if p["platform"] == "geeksforgeeks"
-)
-
-cf = next(
-    p for p in data
-    if p["platform"] == "codeforces"
-)
-
+# --------------------
 # Stats
+# --------------------
+
 lc_solved = leetcode["totalQuestionStats"]["totalQuestionCounts"]
 lc_rating = leetcode["userStats"]["currentRating"]
 lc_peak = leetcode["userStats"]["maxRating"]
@@ -42,19 +35,20 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 
-# Contest history (DYNAMIC)
 contest_history = leetcode["contestActivityStats"]["contestActivityList"]
+ratings = [c["rating"] for c in contest_history]
 
-ratings = [
-    contest["rating"]
-    for contest in contest_history
-]
+# --------------------
+# GRAPH CONFIG
+# --------------------
 
-# Graph dimensions
-graph_x = 80
-graph_y = 80
-graph_width = 720
-graph_height = 220
+GRAPH_LEFT = 420
+GRAPH_TOP = 120
+
+GRAPH_WIDTH = 730
+GRAPH_HEIGHT = 360
+
+PADDING = 30
 
 min_rating = min(ratings)
 max_rating = max(ratings)
@@ -67,68 +61,121 @@ points = []
 for i, rating in enumerate(ratings):
 
     if len(ratings) == 1:
-        x = graph_x + graph_width / 2
+        x = GRAPH_LEFT + GRAPH_WIDTH / 2
     else:
-        x = graph_x + (
-            i * graph_width / (len(ratings) - 1)
+        x = GRAPH_LEFT + (
+            i * GRAPH_WIDTH / (len(ratings) - 1)
         )
 
-    y = graph_y + graph_height - (
-        (rating - min_rating)
-        / (max_rating - min_rating)
-        * graph_height
+    usable_height = GRAPH_HEIGHT - PADDING * 2
+
+    y = (
+        GRAPH_TOP
+        + GRAPH_HEIGHT
+        - PADDING
+        - (
+            (rating - min_rating)
+            / (max_rating - min_rating)
+        )
+        * usable_height
     )
 
     points.append((x, y, rating))
 
 polyline_points = " ".join(
-    f"{x},{y}"
-    for x, y, _ in points
+    f"{x},{y}" for x, y, _ in points
+)
+
+area_points = (
+    f"{points[0][0]},{GRAPH_TOP + GRAPH_HEIGHT} "
+    + polyline_points +
+    f" {points[-1][0]},{GRAPH_TOP + GRAPH_HEIGHT}"
 )
 
 dots = ""
 
 for x, y, rating in points:
     dots += f"""
-    <circle cx="{x}" cy="{y}" r="5" fill="#FFA116"/>
-    <text x="{x-12}" y="{y-12}"
-          fill="white"
-          font-size="11">
+    <circle cx="{x}" cy="{y}" r="5" fill="#a855f7"/>
+
+    <text
+        x="{x-15}"
+        y="{y-12}"
+        fill="white"
+        font-size="12"
+        font-family="Arial">
         {rating}
     </text>
     """
 
+# --------------------
+# SVG
+# --------------------
+
 svg = f"""
-<svg width="900"
-     height="520"
+<svg width="1200"
+     height="650"
      xmlns="http://www.w3.org/2000/svg">
 
+<defs>
+
+<linearGradient id="areaGradient"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1">
+
+<stop offset="0%"
+      stop-color="#a855f7"
+      stop-opacity="0.45"/>
+
+<stop offset="100%"
+      stop-color="#a855f7"
+      stop-opacity="0"/>
+
+</linearGradient>
+
+<clipPath id="graphClip">
+
+<rect
+x="{GRAPH_LEFT}"
+y="{GRAPH_TOP}"
+width="{GRAPH_WIDTH}"
+height="{GRAPH_HEIGHT}"
+rx="12"/>
+
+</clipPath>
+
+</defs>
+
 <style>
+
 .title {{
-    fill:white;
-    font-size:28px;
-    font-family:Arial;
-    font-weight:bold;
+fill:white;
+font-size:28px;
+font-weight:bold;
+font-family:Arial;
 }}
 
 .card {{
-    fill:#161b22;
-    stroke:#30363d;
-    stroke-width:1;
+fill:#161b22;
+stroke:#30363d;
+stroke-width:1;
 }}
 
 .label {{
-    fill:#8b949e;
-    font-size:14px;
-    font-family:Arial;
+fill:#8b949e;
+font-size:14px;
+font-family:Arial;
 }}
 
 .value {{
-    fill:white;
-    font-size:24px;
-    font-family:Arial;
-    font-weight:bold;
+fill:white;
+font-size:26px;
+font-weight:bold;
+font-family:Arial;
 }}
+
 </style>
 
 <rect width="100%"
@@ -137,155 +184,104 @@ svg = f"""
       rx="20"/>
 
 <text x="30"
-      y="40"
+      y="45"
       class="title">
-LeetCode Rating Analytics
+LeetCode Analytics
 </text>
 
-<!-- Rating Card -->
-<rect x="30"
-      y="60"
-      width="180"
-      height="90"
-      rx="12"
-      class="card"/>
+<!-- LEFT PANEL -->
 
-<text x="50"
-      y="90"
-      class="label">
-Current Rating
-</text>
+<rect x="25" y="80" width="340" height="90" rx="14" class="card"/>
+<text x="45" y="110" class="label">Current Rating</text>
+<text x="45" y="145" class="value">{lc_rating}</text>
 
-<text x="50"
-      y="125"
-      class="value">
-{lc_rating}
-</text>
+<rect x="25" y="190" width="340" height="90" rx="14" class="card"/>
+<text x="45" y="220" class="label">Peak Rating</text>
+<text x="45" y="255" class="value">{lc_peak}</text>
 
-<!-- Peak Card -->
-<rect x="230"
-      y="60"
-      width="180"
-      height="90"
-      rx="12"
-      class="card"/>
+<rect x="25" y="300" width="340" height="90" rx="14" class="card"/>
+<text x="45" y="330" class="label">Problems Solved</text>
+<text x="45" y="365" class="value">{lc_solved}</text>
 
-<text x="250"
-      y="90"
-      class="label">
-Peak Rating
-</text>
+<rect x="25" y="410" width="340" height="90" rx="14" class="card"/>
+<text x="45" y="440" class="label">Max Streak</text>
+<text x="45" y="475" class="value">{lc_streak} days</text>
 
-<text x="250"
-      y="125"
-      class="value">
-{lc_peak}
-</text>
+<!-- GRAPH PANEL -->
 
-<!-- Solved Card -->
-<rect x="430"
-      y="60"
-      width="180"
-      height="90"
-      rx="12"
-      class="card"/>
+<rect
+x="390"
+y="80"
+width="780"
+height="450"
+rx="16"
+class="card"/>
 
-<text x="450"
-      y="90"
-      class="label">
-Problems Solved
-</text>
-
-<text x="450"
-      y="125"
-      class="value">
-{lc_solved}
-</text>
-
-<!-- Streak Card -->
-<rect x="630"
-      y="60"
-      width="180"
-      height="90"
-      rx="12"
-      class="card"/>
-
-<text x="650"
-      y="90"
-      class="label">
-Max Streak
-</text>
-
-<text x="650"
-      y="125"
-      class="value">
-{lc_streak}
-</text>
-
-<!-- Graph Background -->
-<rect x="40"
-      y="180"
-      width="820"
-      height="280"
-      rx="12"
-      class="card"/>
-
-<text x="60"
-      y="210"
-      fill="white"
-      font-size="18">
+<text
+x="420"
+y="110"
+fill="white"
+font-size="20"
+font-family="Arial">
 Contest Rating History
 </text>
 
-<!-- Axes -->
-<line x1="80"
-      y1="410"
-      x2="820"
-      y2="410"
-      stroke="#444"/>
+<line
+x1="{GRAPH_LEFT}"
+y1="{GRAPH_TOP + GRAPH_HEIGHT}"
+x2="{GRAPH_LEFT + GRAPH_WIDTH}"
+y2="{GRAPH_TOP + GRAPH_HEIGHT}"
+stroke="#30363d"/>
 
-<line x1="80"
-      y1="230"
-      x2="80"
-      y2="410"
-      stroke="#444"/>
+<line
+x1="{GRAPH_LEFT}"
+y1="{GRAPH_TOP}"
+x2="{GRAPH_LEFT}"
+y2="{GRAPH_TOP + GRAPH_HEIGHT}"
+stroke="#30363d"/>
 
-<!-- Line Graph -->
+<g clip-path="url(#graphClip)">
+
+<polygon
+fill="url(#areaGradient)"
+points="{area_points}"/>
+
 <polyline
-    fill="none"
-    stroke="#FFA116"
-    stroke-width="4"
-    points="{polyline_points}"
-/>
+fill="none"
+stroke="#a855f7"
+stroke-width="4"
+points="{polyline_points}"/>
 
 {dots}
 
-<!-- Footer Stats -->
+</g>
 
-<text x="60"
-      y="490"
+<!-- FOOTER -->
+
+<text x="40"
+      y="600"
       fill="white"
       font-size="15">
 Active Days: {lc_active}
 </text>
 
-<text x="260"
-      y="490"
-      fill="white"
+<text x="300"
+      y="600"
+      fill="#22c55e"
       font-size="15">
 GFG Solved: {gfg_solved}
 </text>
 
-<text x="460"
-      y="490"
-      fill="white"
+<text x="550"
+      y="600"
+      fill="#60a5fa"
       font-size="15">
 Codeforces Solved: {cf_solved}
 </text>
 
-<text x="670"
-      y="490"
-      fill="white"
+<text x="850"
+      y="600"
+      fill="#a855f7"
       font-size="15">
 Contests: {len(ratings)}
 </text>
