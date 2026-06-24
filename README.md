@@ -19,9 +19,10 @@
 ## GitHub Stats
 <p align="center">
   <a href="https://github.com/akshita568">
-    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=akshita568&cache_seconds=7200&layout=compact&theme=tokyonight&border_radius=10" alt="akshita568's GitHub Stats" />
+    <img src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=dark&show_icons=true&hide_border=true&count_private=true" alt="akshita568's GitHub Stats" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=akshita568&theme=dark&show_icons=true&hide_border=true&layout=compact" alt="akshita568's GitHub Stats" />
+    <img src="https://streak-stats.demolab.com?user=akshita568&theme=dark&hide_border=true" alt="akshita568's GitHub Stats" />
   </a>
-  <img src="https://streak-stats.demolab.com/?user=akshita568&theme=tokyonight&hide_border=true&cache_seconds=86400" alt="akshita568's GitHub Streak" width="49%" />
 </p>
 
 <p align="center">
@@ -29,7 +30,9 @@
 </p>
 
 ## Coding Stats
-
-![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=nightowl&show=graph,recent&card_widh=700)
-
-<img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=1">
+<p align="center">
+  ![LeetCode Stats](https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=nightowl&show=graph,recent&card_widh=700)
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=1">
+</p>
