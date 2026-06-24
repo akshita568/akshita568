@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 
 token = os.environ["CODOLIO_TOKEN"]
@@ -18,6 +19,7 @@ response.raise_for_status()
 data = response.json()["data"]["platformProfiles"]["platformProfiles"]
 
 leetcode = next(p for p in data if p["platform"] == "leetcode")
+print(json.dumps(leetcode, indent=2))
 gfg = next(p for p in data if p["platform"] == "geeksforgeeks")
 cf = next(p for p in data if p["platform"] == "codeforces")
 
