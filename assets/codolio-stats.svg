@@ -1,41 +1,99 @@
 
-<svg width="850" height="320" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="450" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+.title {
+    fill: white;
+    font-size: 30px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.label {
+    fill: #c9d1d9;
+    font-size: 16px;
+    font-family: Arial;
+}
+
+.value {
+    fill: white;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.small {
+    fill: #8b949e;
+    font-size: 14px;
+    font-family: Arial;
+}
+</style>
 
 <rect width="100%" height="100%" rx="20" fill="#0d1117"/>
 
-<text x="30" y="45"
-fill="#a371f7"
-font-size="28"
-font-family="Arial">
-📊 Codolio Analytics
+<text x="30" y="45" class="title">
+📊 Coding Profile Analytics
 </text>
 
-<text x="30" y="95" fill="white" font-size="20">
-🟠 LeetCode Solved: 260
+<!-- LeetCode Solved -->
+<text x="30" y="90" class="label">
+LeetCode Solved (260)
 </text>
 
-<text x="30" y="135" fill="white" font-size="20">
-📈 Contest Rating: 1376
+<rect x="30" y="100" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="100" width="166.4" height="18" rx="9" fill="#FFA116"/>
+
+<!-- Contest Rating -->
+<text x="30" y="150" class="label">
+Contest Rating (1376)
 </text>
 
-<text x="30" y="175" fill="white" font-size="20">
-🏆 Peak Rating: 1483
+<rect x="30" y="160" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="160" width="176.12800000000001" height="18" rx="9" fill="#58A6FF"/>
+
+<!-- Streak -->
+<text x="30" y="210" class="label">
+Max Streak (26 days)
 </text>
 
-<text x="30" y="215" fill="white" font-size="20">
-🔥 Max Streak: 26 days
+<rect x="30" y="220" width="320" height="18" rx="9" fill="#30363d"/>
+<rect x="30" y="220" width="83.2" height="18" rx="9" fill="#F85149"/>
+
+<!-- Extra Stats -->
+<text x="30" y="290" class="label">
+Peak Rating
 </text>
 
-<text x="30" y="255" fill="white" font-size="20">
-📅 Active Days: 130
+<text x="250" y="290" class="value">
+1483
 </text>
 
-<text x="450" y="135" fill="white" font-size="20">
-🟢 GFG Solved: 64
+<text x="30" y="330" class="label">
+Active Days
 </text>
 
-<text x="450" y="175" fill="white" font-size="20">
-🔵 Codeforces Solved: 3
+<text x="250" y="330" class="value">
+130
 </text>
+
+<!-- Right Side -->
+<text x="500" y="90" class="label">
+Problems Solved Comparison
+</text>
+
+<!-- LC -->
+<rect x="520" y="90" width="60" height="260" fill="#FFA116"/>
+<text x="530" y="380" class="small">LC</text>
+<text x="520" y="80" class="small">260</text>
+
+<!-- GFG -->
+<rect x="620" y="158" width="60" height="192" fill="#2F8D46"/>
+<text x="630" y="380" class="small">GFG</text>
+<text x="620" y="148" class="small">64</text>
+
+<!-- CF -->
+<rect x="720" y="290" width="60" height="60" fill="#58A6FF"/>
+<text x="735" y="380" class="small">CF</text>
+<text x="720" y="280" class="small">3</text>
 
 </svg>
