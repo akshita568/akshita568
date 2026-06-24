@@ -35,6 +35,10 @@ lc_streak = leetcode["dailyActivityStatsResponse"]["maxStreak"]
 gfg_solved = gfg["totalQuestionStats"]["totalQuestionCounts"]
 cf_solved = cf["totalQuestionStats"]["totalQuestionCounts"]
 total_solved = lc_solved + gfg_solved + cf_solved
+print("LC:", lc_solved)
+print("GFG:", gfg_solved)
+print("CF:", cf_solved)
+print("TOTAL:", total_solved)
 
 contest_history = leetcode["contestActivityStats"]["contestActivityList"]
 ratings = [c["rating"] for c in contest_history]
@@ -205,6 +209,7 @@ Problems Solved
 <text x="515" y="103" class="value">
 {total_solved}
 </text>
+
 
 <rect x="740" y="55" width="220" height="60" rx="10" fill="#161b22"/>
 
