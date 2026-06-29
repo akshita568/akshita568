@@ -20,7 +20,7 @@ Contest Analytics Dashboard
 
 <rect x="500" y="60" width="220" height="60" rx="10" fill="#161b22"/>
 <text x="515" y="85" fill="#8b949e">Total Questions Solved</text>
-<text x="515" y="108" fill="white" font-size="18">330</text>
+<text x="515" y="108" fill="white" font-size="18">334</text>
 
 <rect x="740" y="60" width="220" height="60" rx="10" fill="#161b22"/>
 <text x="755" y="85" fill="#8b949e">Max Streak</text>
@@ -42,11 +42,11 @@ Contest Analytics Dashboard
 <rect x="20" y="450" width="960" height="60" rx="10" fill="#161b22"/>
 
 <text x="40" y="485" fill="white" font-size="13">
-Total Active Days: 153
+Total Active Days: 156
 </text>
 
 <text x="220" y="485" fill="#ffa116" font-size="13">
-🟠 LC: 263
+🟠 LC: 267
 </text>
 
 <text x="360" y="485" fill="#22c55e" font-size="13">
