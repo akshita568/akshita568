@@ -21,7 +21,7 @@
 ## GitHub Stats
 <p align="center">
   <a href="https://github.com/akshita568">
-    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=akshita568&cache_seconds=7200&layout=compact&theme=radical&border_radius=10" alt="akshita568's GitHub Stats" />
+    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=akshita568&theme=default&show_icons=true&hide_border=true&count_private=true" />
   </a>
   <img src="https://streak-stats.demolab.com/?user=akshita568&theme=radical&hide_border=true&cache_seconds=86400" alt="akshita568's GitHub Streak" width="49%" />
 </p>
