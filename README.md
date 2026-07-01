@@ -46,3 +46,9 @@
   <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=2"
        width="100%" />
 </p>
+
+<p align="center">
+  <a href="https://codolio.com/profile/akshita_">
+    <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=700&size=24&pause=1000&color=8A2BE2&center=true&vCenter=true&width=650&lines=+Explore+My+Developer+Portfolio;View+My+Codolio+Profile" />
+  </a>
+</p>
