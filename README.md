@@ -34,6 +34,11 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?"
+  <img height="100%"
+       src="https://raw.github.com/akshita_sharma/Codeforces-stats-card/main/assets/codeforces-stats.svg?v=2" />
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=2"
        width="100%" />
 </p>
