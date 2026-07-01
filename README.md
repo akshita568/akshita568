@@ -50,8 +50,6 @@
 
 ---
 
-# Contribution Animation
-
 <p align="center">
 <img width="80%" src="https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif"/>
 </p>
@@ -61,11 +59,11 @@
 # Coding Stats
 
 <p align="center">
-<img width="80%" src="https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent"/>
+<img src="https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent"/>
 </p>
 
 <p align="center">
-<img width="80%" src="https://codeforces-readme-stats.vercel.app/api/card?username=akshita_sharma&theme=github_dark"/>
+<img src="https://codeforces-readme-stats.vercel.app/api/card?username=akshita_sharma&theme=github_dark"/>
 </p>
 
 <p align="center">
