@@ -33,7 +33,7 @@
        src="https://github-readme-leetcode-card.romitsagu.com/akshita_Sharma568?theme=radical&show=graph,recent" />
 </p>
 
-![Codeforces Stats](https://raw.github.com/akshita_sharma/Codeforces-stats-card/main/assets/codeforces-stats.svg?v=2)
+![Codeforces Stats](https://raw.github.com/akshita_sharma/Codeforces-stats-card/main/assets/codeforces-stats.svg?v=2)[![Codeforces Stats](https://codeforces-readme-stats.vercel.app/api/card?username=akshita_sharma&theme=github_dark&disable_animations=false&show_icons=false&force_username=false)](https://codeforces.com/profile/akshita_sharma)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/akshita568/akshita568/main/assets/codolio-stats.svg?v=2"
