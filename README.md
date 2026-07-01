@@ -34,8 +34,11 @@
 </p>
 
 <p align="center">
-  <img height="100%"
-       src="(https://codeforces-readme-stats.vercel.app/api/card?username=akshita_sharma&theme=github_dark&disable_animations=false&show_icons=false&force_username=false)](https://codeforces.com/profile/akshita_sharma)" />
+  <a href="https://codeforces.com/profile/akshita_sharma">
+    <img
+      src="https://codeforces-readme-stats.vercel.app/api/card?username=akshita_sharma&theme=github_dark&disable_animations=false&show_icons=false&force_username=false"
+      alt="Codeforces Stats" />
+  </a>
 </p>
 
 
