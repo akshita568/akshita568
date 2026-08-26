@@ -9,7 +9,7 @@
 # About Me
 
 - I'm a Computer Science undergraduate passionate about solving real-world problems through technology. My interests lie in Artificial Intelligence, Machine Learning, Network Security, and Software Development. I enjoy building data-driven applications, exploring new technologies, and continuously improving my problem-solving skills through Data Structures and Algorithms.
-- Beyond coding, I run a small art business where I create and sell paintings, combining creativity with entrepreneurship. I'm always eager to learn, collaborate, and contribute to impactful projects.
+- Beyond coding, I run a small art business where I create and sell paintings, combining creativity with entrepreneurship. I'm always eager to learn, collaborate, and contribute to impactful projects. link to my art portfolio: https://silent-strokes.vercel.app/
 
 
 ---
