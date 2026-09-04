@@ -41,7 +41,7 @@
 </table>
 
 <p align="center">
-<img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=akshita568&theme=radical&radius=10"/>
+<img width="90%" src="https://raw.githubusercontent.com/akshita568/akshita568/output/activity-graph.svg"/>
 </p>
 
 <p align="center">
